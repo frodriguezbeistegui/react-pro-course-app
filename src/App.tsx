@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.css';
-import { Navigation } from './routes/Navigation';
+import React from "react";
+import "./App.css";
+import { Navigation } from "./routes/Navigation";
 
 function App() {
   return (
