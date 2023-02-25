@@ -44,7 +44,7 @@ export const Navigation = () => {
         <Routes>
           <Route path="about" element={<h1>About page</h1>} />
           <Route path="users" element={<h1>Users page</h1>} />
-          <Route path="/home" element={<h1>home page</h1>} />
+          <Route path="/home" element={<h1>Home page</h1>} />
 
           <Route path="/*" element={<Navigate to="/home" />} />
         </Routes>
