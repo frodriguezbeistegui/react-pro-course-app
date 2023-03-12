@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -10,35 +11,38 @@ import { routes } from "./routes";
 
 export const Navigation = () => {
   return (
-    <BrowserRouter>
-      <div className="main-layout">
-        <nav>
-          <img src={logo} alt="react logo" />
-          <ul>
-            {
-              routes.map(({to, name}) => (
-                <li>
-                  <NavLink
-                  key={to}
-                  to={to}
-                  className={({ isActive }) => (isActive ? "nav-active" : "")}>
-                    {name}
-                  </NavLink>
-                </li>
-              ))
-            }
-          </ul>
-        </nav>
+    <Suspense fallback={<span>Loading...</span>}>
+      <BrowserRouter>
+        <div className="main-layout">
+          <nav>
+            <img src={logo} alt="react logo" />
+            <ul>
+              {
+                routes.map(({to, name}) => (
+                  <li>
+                    <NavLink
+                    key={to}
+                    to={to}
+                    className={({ isActive }) => (isActive ? "nav-active" : "")}>
+                      {name}
+                    </NavLink>
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
 
-        <Routes>
-            {
-              routes.map(({to, path, Component}) => (
-                <Route key={to} path={path} element={<Component />} />
-              ))
-            }
-          <Route path="/*" element={<Navigate to={routes[0].to}/>} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+          <Routes>
+              {
+                routes.map(({to, path, Component}) => (
+                  <Route key={to} path={path} element={<Component />} />
+                ))
+              }
+            <Route path="/*" element={<Navigate to={routes[0].to}/>} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </Suspense>
+
   );
 };
